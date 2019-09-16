@@ -4,10 +4,10 @@ services:
         image: nginx:alpine
         container_name: ${PROJECT_NAME}_nginx
         volumes:
-            - "./etc/nginx/default.conf:/etc/nginx/conf.d/default.conf"
-            - "./etc/ssl:/etc/ssl"
-            - "../src:/var/www/html"
-            - "./etc/nginx/default.template.conf:/etc/nginx/conf.d/default.template"
+            - "./.etc/nginx/default.conf:/etc/nginx/conf.d/default.conf"
+            - "./.etc/ssl:/etc/ssl"
+            - "./src:/var/www/html"
+            - "./.etc/nginx/default.template.conf:/etc/nginx/conf.d/default.template"
         ports:
             - "80:80"
             - "3000:443"
@@ -23,9 +23,14 @@ services:
         container_name: ${PROJECT_NAME}_php
 #        restart: always
         volumes:
-            - "./etc/php/php.ini:/usr/local/etc/php/conf.d/php.ini"
-            - "../src:/var/www/html"
-            - "~/.gitconfig:/var/www/.gitconfig"
+            - "./.etc/php/php.ini:/usr/local/etc/php/conf.d/php.ini"
+            - "./src:/var/www/html"
+            - "./.etc/.gitconfig:/var/www/.gitconfig"
+            - ./.etc/.gitignore_global:/home/www-data/.gitignore_global
+            - ./.etc/.gitconfig:/home/www-data/.gitconfig
+            - ./.etc/.bashrc:/home/www-data/.bashrc
+
+
     myadmin:
         image: phpmyadmin/phpmyadmin
         container_name: ${PROJECT_NAME}_myadmin

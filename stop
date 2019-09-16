@@ -1,0 +1,2 @@
+docker-compose stop
+echo "Good bye!"

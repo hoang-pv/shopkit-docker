@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+docker-compose up -d && \
+echo "
+================== 😘 Done 😀 ==================
+
+			Created by Hoang Phan
+
+			Access your new links:
+
+			🌎 Web server: http://shop.kit
+
+
+			Access Shell       : ./shell
+			Access Shell root  : ./shell root
+
+
+================== 🤝 Good luck! 🤝 ==================
+"

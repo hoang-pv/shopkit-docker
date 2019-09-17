@@ -39,13 +39,13 @@ services:
         environment:
             - PMA_ARBITRARY=1
             - PMA_HOST=${MYSQL_HOST}
-        restart: always
+              # restart: always
         depends_on:
             - mysqldb
     mysqldb:
         image: mysql:${MYSQL_VERSION}
         container_name: ${PROJECT_NAME}_mysql
-        restart: always
+        #   restart: always
         env_file:
             - ".env"
         environment:

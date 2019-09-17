@@ -18,7 +18,10 @@ RUN apt-get update && apt-get install -y \
 RUN groupadd -g 1000 app \
  && useradd -g 1000 -u 1000 -d /var/www -s /bin/bash app
 
-RUN chown -R www-data: /var/www/html
+RUN chown -R www-data:app /var/www/html &&\
+    chmod g+w /var/www/html -R
+
+
 
 RUN \
   chmod 777    /var/www/ &&\
@@ -26,5 +29,13 @@ RUN \
 
 USER www-data
 RUN git clone https://github.com/arialdomartini/oh-my-git.git ~/.oh-my-git && echo source ~/.oh-my-git/prompt.sh >> ~/.bashrc
+
+# install wp-cli
+RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar &&\
+    chmod +x wp-cli.phar &&\
+
+USER root
+RUN mv wp-cli.phar /usr/local/bin/wp
+USER www-data
 
 WORKDIR $INSTALL_DIR
